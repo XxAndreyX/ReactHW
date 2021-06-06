@@ -1,25 +1,42 @@
-import logo from './logo.svg';
-import './App.css';
+import Home from './projects/Home.js';
+import EditTodo from './projects/EditTodo.js';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import TaskList from './components/TaskList/TaskList.js';
+import React, { useState } from 'react';
+// react-router-dom
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch
+} from 'react-router-dom';
+
+const state = [ 
+  { id:1, 
+    name: "Завести новую задачу", 
+    description: 'Для выполнения всех задач на день', 
+    tasks: [
+      {
+        id: 4321,
+        name: '',
+        description: '',
+        completed: false
+      }
+    ],
+    completed: false
+  }
+];
+
+const App = () =>{
+    return (
+      <Router>
+            <div style={{ padding: 8 }}>
+              <Switch>
+                  <Route exact path="/" component={Home} />
+                  <Route exact path="/todos/:id" component={EditTodo} />
+              </Switch>
+            </div>
+      </Router>
+    )
 }
 
 export default App;
