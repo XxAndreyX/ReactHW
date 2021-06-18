@@ -1,25 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+import Home from './projects/Home.js';
+import EditTodo from './projects/EditTodo.js';
+import { Provider } from 'react-redux';
+import TaskList from './components/TaskList/TaskList.js';
+import React, { useState } from 'react';
+import store from './AppStore';
+// react-router-dom
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch
+} from 'react-router-dom';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const App = () =>{
+    return (
+      <Provider store={store}>
+        <Router>
+              <div style={{ padding: 8 }}>
+                <Switch>
+                    <Route exact path="/" component={Home} />
+                    <Route exact path="/todos/:id" component={EditTodo} />
+                </Switch>
+              </div>
+        </Router>
+      </Provider>
+    )
 }
 
 export default App;
