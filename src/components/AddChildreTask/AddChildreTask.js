@@ -1,27 +1,18 @@
 import React, {useState} from 'react';
-import { useDispatch } from 'react-redux';
-import './TaskAdd.css';
-
-const AddTask = (props)=>{
-    const [valueName, setValueName] = useState('');
-    const [valueDescriptions, setValueDescription] = useState('');
-    const dispatch = useDispatch();
-import './TaskAdd.css';
+import './AddChildreTask.css';
+import { useDispatch, useSelector } from 'react-redux';
  
-const AddTask = (props)=>{
+const AddChildreTask = (props)=>{
     const [valueName, setValueName] = useState('');
     const [valueDescriptions, setValueDescription] = useState('');
     const addOneTask = props.onCreate;
+    const parentId = props.parentId;
+    const dispatch = useDispatch();
 
     function submitHandler(e) {
         e.preventDefault();
-
-         if (valueName.trim() || valueDescriptions.trim()) {
-            dispatch({ type: 'ADD_TODO', name: valueName, description: valueDescriptions });
-
         if (valueName.trim() || valueDescriptions.trim()) {
-            props.onCreate(valueName, valueDescriptions);
-
+            dispatch({ type: 'ADD_CHILDREN_TODO', name: valueName, description: valueDescriptions, parentId: parentId });
         }
     };
 
@@ -36,4 +27,4 @@ const AddTask = (props)=>{
     )
 }
 
-export default AddTask;
+export default AddChildreTask;
