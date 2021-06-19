@@ -6,12 +6,21 @@ const AddTask = (props)=>{
     const [valueName, setValueName] = useState('');
     const [valueDescriptions, setValueDescription] = useState('');
     const dispatch = useDispatch();
+import './TaskAdd.css';
+ 
+const AddTask = (props)=>{
+    const [valueName, setValueName] = useState('');
+    const [valueDescriptions, setValueDescription] = useState('');
     const addOneTask = props.onCreate;
 
     function submitHandler(e) {
         e.preventDefault();
+
          if (valueName.trim() || valueDescriptions.trim()) {
             dispatch({ type: 'ADD_TODO', name: valueName, description: valueDescriptions });
+
+        if (valueName.trim() || valueDescriptions.trim()) {
+            props.onCreate(valueName, valueDescriptions);
         }
     };
 
